@@ -10,7 +10,7 @@ Reviewed November 16, 2026 against the KMZ In Class 10 assignment and subsequent
 | Showcase composition and library capabilities | Implemented: geometric artwork composed from native views; shared themed screens, light/dark palettes and per-artist accents. Restyle supplies styling; Animated, Expo Router and Expo Haptics supply motion/navigation/feedback. |
 | Explore beyond the class demonstration | Demo capabilities are ready; what was demonstrated in class was not supplied, so novelty relative to class cannot be verified. |
 | Sincere working prototype | Expo mobile app runs in the iPhone 17 simulator. Web export is available for presentation. |
-| Fork starter and submit a PR | Pending verification/completion: local origin is Ashley's `Week-10-Starter`; no submission PR has been created in this work. Confirm the class upstream before opening the final PR. |
+| Fork starter and submit a PR | Completed: pushed `main` to `Mustafa16192/Week-10-Starter`, forked from the class starter. Open PR: https://github.com/UMSI669/Week-10-Starter/pull/7. Ashley's remote is retained as `ashley`; class repository is `upstream`. |
 | Submit PR link to Canvas by 11:50 AM | Not submitted. A local commit is not a submission. |
 | Present Nov 30; no slides required | Simulator and web presentation paths documented. Actual presentation remains to be done. |
 | No process docs needed | No process document required. This file is an engineering checklist. |

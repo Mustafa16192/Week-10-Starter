@@ -63,3 +63,7 @@ Profile → Appearance offers Light, Dark, and Automatic with an accessible sele
 Profile includes **Spacing: Compact / Comfortable** and **Content size: Small / Medium / Large**. Comfortable and Medium are defaults. Both preferences persist locally. Spacing replaces shared Restyle spacing tokens; content size scales theme typography (90%, 100%, 120%) and sets the maximum content width (600, 840, 1080 points). Containers remain 100% of available width up to that cap, so narrowing the web window or using a phone keeps content within the viewport. The player is capped at 680 points for readability. Controls retain at least 48-point touch targets in compact mode, and system font scaling remains enabled.
 
 Demo: open Profile, switch Compact/Comfortable, change content size, then resize the web window and visit Discover/detail. These are live theme changes, not screenshots or separate layouts. Controls were observed on iOS and web; the complete manual resize/selection flow still needs a visual pass.
+
+## Submission PR
+
+[KMZ Week 10 submission PR #7](https://github.com/UMSI669/Week-10-Starter/pull/7) targets the original class starter. Code is pushed to [Mustafa16192/Week-10-Starter](https://github.com/Mustafa16192/Week-10-Starter). Canvas submission has not been performed.
