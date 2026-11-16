@@ -1,6 +1,6 @@
 import { useSavedConcerts } from "../state/SavedConcerts";
 import { SaveConcertButton } from "./SaveConcertButton";
-import { useConcertTheme } from "../useConcertTheme";
+import { useConcertTheme, useContentWidth } from "../useConcertTheme";
 import { router } from "expo-router";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +17,7 @@ export default function ConcertList({
   const shows = concerts.filter(
     (c) => !savedOnly || saved.ids.includes(c.artistId),
   );
+  const contentWidth = useContentWidth();
   const theme = useConcertTheme();
   return (
     <ThemeProvider theme={theme}>
@@ -31,7 +32,7 @@ export default function ConcertList({
           <Box
             padding="m"
             gap="l"
-            maxWidth={680}
+            maxWidth={contentWidth}
             width="100%"
             alignSelf="center"
           >

@@ -57,3 +57,9 @@ Codex helped brainstorm the concept with Mustafa, implement the Expo/Restyle pro
 ## Automatic daylight appearance
 
 Profile → Appearance offers Light, Dark, and Automatic with an accessible selected indicator and haptic feedback. The preference is saved on the device and applies across navigation, concert pages, artwork, and the player. Automatic is the default; the device's local clock selects light mode from 07:00 through 18:59 and dark mode from 19:00 through 06:59. This is clock-based, not the OS appearance setting or sunrise/sunset. The app rechecks every 30 seconds and on foregrounding, so no location permission is needed. Each artist has contrast-adjusted accents in both modes. Boundary tests cover 07:00 and 19:00.
+
+## Layout preferences and resizing
+
+Profile includes **Spacing: Compact / Comfortable** and **Content size: Small / Medium / Large**. Comfortable and Medium are defaults. Both preferences persist locally. Spacing replaces shared Restyle spacing tokens; content size scales theme typography (90%, 100%, 120%) and sets the maximum content width (600, 840, 1080 points). Containers remain 100% of available width up to that cap, so narrowing the web window or using a phone keeps content within the viewport. The player is capped at 680 points for readability. Controls retain at least 48-point touch targets in compact mode, and system font scaling remains enabled.
+
+Demo: open Profile, switch Compact/Comfortable, change content size, then resize the web window and visit Discover/detail. These are live theme changes, not screenshots or separate layouts. Controls were observed on iOS and web; the complete manual resize/selection flow still needs a visual pass.

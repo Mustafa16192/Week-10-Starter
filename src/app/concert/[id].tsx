@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { SaveConcertButton } from "../../components/SaveConcertButton";
-import { useConcertTheme } from "../../useConcertTheme";
+import { useConcertTheme, useContentWidth } from "../../useConcertTheme";
 import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +12,7 @@ export default function ConcertDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const concert = concerts.find((c) => c.artistId === id);
   const artist = artists.find((a) => a.id === id);
+  const contentWidth = useContentWidth();
   const theme = useConcertTheme(artist?.atmosphere ?? "electric");
   const back = () => (router.canGoBack() ? router.back() : router.replace("/"));
   if (!concert || !artist)
@@ -42,7 +43,7 @@ export default function ConcertDetailScreen() {
           paddingHorizontal="m"
           paddingVertical="xs"
           width="100%"
-          maxWidth={680}
+          maxWidth={contentWidth}
           alignSelf="center"
         >
           <Touch label="Back to concerts" onPress={back}>
@@ -59,7 +60,7 @@ export default function ConcertDetailScreen() {
             paddingHorizontal="m"
             gap="l"
             width="100%"
-            maxWidth={680}
+            maxWidth={contentWidth}
             alignSelf="center"
           >
             <Box>

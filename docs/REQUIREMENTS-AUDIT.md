@@ -47,3 +47,10 @@ Typecheck, ESLint, four fixture/daylight tests, and production web export are th
 4. Open a song and use next/previous; clearly identify this as a player interface preview.
 5. Profile → Appearance: switch light/dark to show coordinated styling across all screens.
 6. Explain the boundary: Restyle is a styling system, not an audio, navigation, haptic or animation engine.
+
+## Additional requested layout showcase
+
+- Compact / Comfortable spacing: implemented through shared Restyle spacing tokens; defaults to Comfortable.
+- User-controlled content size in Profile: Small / Medium / Large scales text and desktop content width, persists locally, and includes a live preview.
+- Web resizing: fluid 100%-width containers capped by the selected content width; screens remain scrollable. No fixed minimum desktop width.
+- Validation: lint, typecheck, web export passed; controls observed in simulator and browser. Full manual resize-and-toggle verification remains pending because browser interaction was interrupted.

@@ -1,3 +1,4 @@
+import { useLayoutPreferences } from "../../state/LayoutPreferences";
 import { ScrollView } from "react-native";
 import { Touch } from "../../components/ConcertUI";
 import { useAppearance } from "../../state/Appearance";
@@ -5,13 +6,19 @@ import { ThemeProvider } from "@shopify/restyle";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Box, Text } from "../../theme";
-import { useConcertTheme, useDaytime } from "../../useConcertTheme";
+import {
+  useConcertTheme,
+  useContentWidth,
+  useDaytime,
+} from "../../useConcertTheme";
 import { useSavedConcerts } from "../../state/SavedConcerts";
 export default function ProfileScreen() {
+  const contentWidth = useContentWidth();
   const theme = useConcertTheme();
   const day = useDaytime();
   const saved = useSavedConcerts();
   const appearance = useAppearance();
+  const layout = useLayoutPreferences();
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView
@@ -22,7 +29,7 @@ export default function ProfileScreen() {
           <Box
             padding="m"
             gap="l"
-            maxWidth={680}
+            maxWidth={contentWidth}
             width="100%"
             alignSelf="center"
           >
@@ -85,6 +92,95 @@ export default function ProfileScreen() {
               {appearance.error ? (
                 <Text accessibilityRole="alert">{appearance.error}</Text>
               ) : null}
+            </Box>
+            <Box gap="s">
+              <Text variant="heading">Spacing</Text>
+              <Text color="muted">
+                Compact fits more on screen. Comfortable gives everything room
+                to breathe.
+              </Text>
+              {(["compact", "comfortable"] as const).map((value) => (
+                <Touch
+                  key={value}
+                  label={`${value} spacing`}
+                  checked={layout.density === value}
+                  onPress={() => layout.setDensity(value)}
+                >
+                  <Box
+                    padding="m"
+                    backgroundColor="surface"
+                    borderRadius="m"
+                    flexDirection="row"
+                    alignItems="center"
+                    gap="s"
+                  >
+                    <Text flex={1}>
+                      {value === "compact" ? "Compact" : "Comfortable"}
+                    </Text>
+                    <Ionicons
+                      name={
+                        layout.density === value
+                          ? "checkmark-circle"
+                          : "ellipse-outline"
+                      }
+                      size={24}
+                      color={theme.colors.accent}
+                    />
+                  </Box>
+                </Touch>
+              ))}
+            </Box>
+            <Box gap="s">
+              <Text variant="heading">Content size</Text>
+              <Text color="muted">
+                Adjust text size and the content width on larger screens. On
+                your phone, content always fits the screen.
+              </Text>
+              {(["small", "medium", "large"] as const).map((value) => (
+                <Touch
+                  key={value}
+                  label={`${value} content size`}
+                  checked={layout.size === value}
+                  onPress={() => layout.setSize(value)}
+                >
+                  <Box
+                    padding="m"
+                    backgroundColor="surface"
+                    borderRadius="m"
+                    flexDirection="row"
+                    alignItems="center"
+                    gap="s"
+                  >
+                    <Text flex={1}>
+                      {value.charAt(0).toUpperCase() + value.slice(1)}
+                    </Text>
+                    <Ionicons
+                      name={
+                        layout.size === value
+                          ? "checkmark-circle"
+                          : "ellipse-outline"
+                      }
+                      size={24}
+                      color={theme.colors.accent}
+                    />
+                  </Box>
+                </Touch>
+              ))}
+              {layout.error ? (
+                <Text accessibilityRole="alert">{layout.error}</Text>
+              ) : null}
+              <Box
+                backgroundColor="surface"
+                borderRadius="m"
+                padding="m"
+                gap="s"
+              >
+                <Text variant="heading">Your layout preview</Text>
+                <Text>Changes apply immediately throughout Afterglow.</Text>
+                <Text variant="caption">
+                  Resize the web window to see this content adapt.
+                </Text>
+              </Box>
             </Box>
             <Text variant="caption">
               Afterglow · KMZ prototype. Fictional shows and song previews.

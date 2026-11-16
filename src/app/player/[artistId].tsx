@@ -4,12 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "@shopify/restyle";
 import { Ionicons } from "@expo/vector-icons";
 import { artists } from "../../data";
-import { useConcertTheme } from "../../useConcertTheme";
+import { useConcertTheme, useContentWidth } from "../../useConcertTheme";
 import { Box, Text } from "../../theme";
 import { Artwork, Touch } from "../../components/ConcertUI";
 export default function PlayerScreen() {
   const params = useLocalSearchParams<{ artistId: string; track?: string }>();
   const artist = artists.find((a) => a.id === params.artistId);
+  const contentWidth = useContentWidth();
   const theme = useConcertTheme(artist?.atmosphere ?? "electric");
   const parsed = Number(params.track ?? 0);
   const index =
@@ -39,7 +40,7 @@ export default function PlayerScreen() {
             padding="m"
             gap="l"
             width="100%"
-            maxWidth={560}
+            maxWidth={Math.min(contentWidth, 680)}
             alignSelf="center"
             flex={1}
           >

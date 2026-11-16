@@ -1,3 +1,7 @@
+import {
+  LayoutPreferencesProvider,
+  useLayoutPreferences,
+} from "../state/LayoutPreferences";
 import { AppearanceProvider, useAppearance } from "../state/Appearance";
 import { SavedConcertsProvider } from "../state/SavedConcerts";
 import { useConcertTheme, useDaytime } from "../useConcertTheme";
@@ -7,16 +11,19 @@ import { useReducedMotion } from "../components/ConcertUI";
 export default function RootLayout() {
   return (
     <AppearanceProvider>
-      <AppNavigator />
+      <LayoutPreferencesProvider>
+        <AppNavigator />
+      </LayoutPreferencesProvider>
     </AppearanceProvider>
   );
 }
 function AppNavigator() {
   const { ready } = useAppearance();
+  const layout = useLayoutPreferences();
   const theme = useConcertTheme();
   const daytime = useDaytime();
   const reduced = useReducedMotion();
-  if (!ready) return null;
+  if (!ready || !layout.ready) return null;
   return (
     <SavedConcertsProvider>
       <StatusBar style={daytime ? "dark" : "light"} />
